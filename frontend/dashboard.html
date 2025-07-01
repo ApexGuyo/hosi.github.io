@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="dashboard-page">
+  <div class="glass-card centered-card">
+    <h2>Patient Record & SMS</h2>
+    <input type="text" id="name" placeholder="Full Name" />
+    <input type="text" id="phone" placeholder="Phone (e.g. 2547...)" />
+    <textarea id="diagnosis" placeholder="Diagnosis"></textarea>
+    <button onclick="addPatient()">Send SMS</button>
+    <p id="status" class="status-message"></p>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
