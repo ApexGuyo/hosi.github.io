@@ -1,57 +1,83 @@
-body {
+/* Full-screen layout */
+html, body {
   margin: 0;
+  padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  overflow: hidden;
 }
 
-.centered-card {
-  max-width: 400px;
-  width: 90%;
+/* Make page scrollable when form is long */
+.dashboard-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
+/* Glass card */
 .glass-card {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 30px;
+  padding: 30px 25px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   color: #000;
   text-align: center;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
+/* Form headers */
 .glass-card h2 {
   margin-bottom: 20px;
   color: #222;
 }
 
-input, textarea, button {
+/* Inputs and textareas */
+input,
+select,
+textarea,
+button {
   width: 100%;
-  margin: 10px 0;
+  margin-bottom: 15px;
   padding: 12px;
   font-size: 16px;
   border: none;
   border-radius: 10px;
-  outline: none;
+  box-sizing: border-box;
 }
 
-input, textarea {
+input,
+textarea,
+select {
   background: rgba(255, 255, 255, 0.8);
   color: #000;
 }
 
+/* Textarea scroll */
 textarea {
   resize: vertical;
   min-height: 80px;
 }
 
+/* Buttons */
 button {
   background-color: #00796b;
   color: white;
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
 
@@ -59,7 +85,9 @@ button:hover {
   background-color: #004d40;
 }
 
+/* Status message */
 .status-message {
   margin-top: 10px;
   font-weight: bold;
+  color: #00796b;
 }

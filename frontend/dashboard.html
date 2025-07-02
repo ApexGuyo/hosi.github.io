@@ -9,9 +9,25 @@
 <body class="dashboard-page">
   <div class="glass-card centered-card">
     <h2>Patient Record & SMS</h2>
+
     <input type="text" id="name" placeholder="Full Name" />
-    <input type="text" id="phone" placeholder="Phone (e.g. 2547...)" />
+    <input type="number" id="age" placeholder="Age" />
+
+    <select id="gender">
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <textarea id="history" placeholder="Patient History"></textarea>
+    <textarea id="investigations" placeholder="Investigations"></textarea>
     <textarea id="diagnosis" placeholder="Diagnosis"></textarea>
+    <textarea id="treatment" placeholder="Treatment"></textarea>
+    <textarea id="instructions" placeholder="Doctor's Instructions"></textarea>
+
+    <input type="text" id="phone" placeholder="Phone (e.g. 2547...)" />
+
     <button onclick="addPatient()">Send SMS</button>
     <p id="status" class="status-message"></p>
   </div>

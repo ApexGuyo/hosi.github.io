@@ -7,22 +7,41 @@ const africastalking = require('africastalking')({
 });
 const sms = africastalking.SMS;
 
-router.post('/add', (req, res) => {
-  const { name, phone, diagnosis } = req.body;
+router.post('/add', async (req, res) => {
+  const {
+    name, age, gender, history,
+    investigations, diagnosis, treatment,
+    instructions, phone
+  } = req.body;
 
-  // Save to DB
-  const query = 'INSERT INTO patients (name, phone, diagnosis) VALUES (?, ?, ?)';
-  db.query(query, [name, phone, diagnosis], async (err, result) => {
-    if (err) return res.status(500).json({ error: err });
+  const insertQuery = `
+    INSERT INTO patients (name, age, gender, history, investigations, diagnosis, treatment, instructions, phone)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
 
-    // Send SMS
-    const message = `Patient ${name}, diagnosis: ${diagnosis}`;
+  const values = [name, age, gender, history, investigations, diagnosis, treatment, instructions, phone];
+
+  db.query(insertQuery, values, async (err, result) => {
+    if (err) return res.status(500).json({ error: 'Database error' });
+
+    const smsMessage = `
+Hello ${name}, your visit summary:
+Diagnosis: ${diagnosis}
+Treatment: ${treatment}
+Instructions: ${instructions}
+- Hospital Team
+    `.trim();
+
     try {
-      await sms.send({ to: [`+${phone}`], message });
-      res.json({ message: 'Patient saved and SMS sent.' });
+      await sms.send({
+        to: [`+${phone}`],
+        message: smsMessage
+      });
+
+      res.json({ message: 'Patient saved & SMS sent.' });
     } catch (smsError) {
-      console.error(smsError);
-      res.status(500).json({ error: 'Saved, but SMS failed.' });
+      console.error('SMS error:', smsError);
+      res.status(500).json({ message: 'Saved, but failed to send SMS.' });
     }
   });
 });

@@ -9,15 +9,28 @@ function login() {
   }
 }
 
+
 function addPatient() {
   const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
+  const age = document.getElementById('age').value;
+  const gender = document.getElementById('gender').value;
+  const history = document.getElementById('history').value;
+  const investigations = document.getElementById('investigations').value;
   const diagnosis = document.getElementById('diagnosis').value;
+  const treatment = document.getElementById('treatment').value;
+  const instructions = document.getElementById('instructions').value;
+  const phone = document.getElementById('phone').value;
+
+  const payload = {
+    name, age, gender, history,
+    investigations, diagnosis, treatment,
+    instructions, phone
+  };
 
   fetch('http://localhost:3000/api/patients/add', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, phone, diagnosis })
+    body: JSON.stringify(payload)
   })
     .then(res => res.json())
     .then(data => {
